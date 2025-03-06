@@ -25,38 +25,6 @@ def generate_password(name, extra_chars, level):
 # Page Config
 st.set_page_config(page_title="Password Generator", page_icon="🔑", layout="centered")
 
-# Custom Styling
-st.markdown(
-    """
-    <style>
-        .stApp {
-            background-color: #002d6e;
-            color: #ffffff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-        .stTextInput input, .stRadio label {
-            background-color: #ffffff !important;
-            color: #000000 !important;
-            border-radius: 5px;
-            padding: 5px;
-        }
-        .stButton button {
-            color: #002d6e !important;
-            background-color: #ffffff !important;
-            font-weight: bold;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-# Title with Custom Styling
-st.markdown("""
-    <h1 style='text-align: center; color: #ffffff;'>🔐 Secure Password Generator</h1>
-    <h3 style='text-align: center; color: #ffffff;'>Create a strong, unique password instantly! 🚀</h3>
-""", unsafe_allow_html=True)
-
 # Input Fields
 name = st.text_input("✏️ Enter a name or keyword:")
 extra_chars = st.text_input("🔢 Enter numbers or symbols:")
@@ -76,5 +44,5 @@ if st.button("🔑 Generate Password"):
 # Footer with Custom Styling
 st.markdown("""
     <hr>
-    <p style='text-align: center; color: #ffffff;'>🔒 Keep your password secure and unique! | <b>Created by Hanishah</b></p>
+    <p style='text-align: center'>🔒 Keep your password secure and unique! | <b>Created by Hanishah</b></p>
 """, unsafe_allow_html=True)
