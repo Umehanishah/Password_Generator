@@ -4,13 +4,13 @@ import string
 
 def generate_password(name, extra_chars, level):
     if level == "Weak":
-        length = 8
+        length = 6
         chars = string.ascii_letters
     elif level == "Medium":
-        length = 12
+        length = 8
         chars = string.ascii_letters + string.digits
     else:  # Strong
-        length = 16
+        length = 10
         chars = string.ascii_letters + string.digits + string.punctuation
     
     total_length = len(name) + len(extra_chars)
@@ -30,9 +30,15 @@ st.markdown(
     """
     <style>
         .stApp {
-            background-color: #FFEBEB;
+            background-color: #002d6e;
+            color: #ffffff;
             padding: 20px;
             border-radius: 10px;
+        }
+        .stTextInput, .stSlider {
+            background-color: #ffffff;
+            color: #000000;
+            border-radius: 5px;
         }
     </style>
     """,
@@ -41,24 +47,23 @@ st.markdown(
 
 # Title with Custom Styling
 st.markdown("""
-    <h1 style='text-align: center; color: #4CAF50;'>🔐 Secure Password Generator</h1>
-    <h3 style='text-align: center;'>Create a strong, unique password instantly!</h3>
+    <h1 style='text-align: center; color: #ffffff;'>🔐 Secure Password Generator</h1>
+    <h3 style='text-align: center;'>Create a strong, unique password instantly! 🚀</h3>
 """, unsafe_allow_html=True)
 
 # Input Fields
-name = st.text_input("Enter a name or keyword:")
-extra_chars = st.text_input("Enter numbers or symbols:")
-level = st.slider("Select password strength:", 1, 3, 2, format=None)
+name = st.text_input("✏️ Enter a name or keyword:")
+extra_chars = st.text_input("🔢 Enter numbers or symbols:")
 
-# Convert slider value to text
-level_map = {1: "Weak", 2: "Medium", 3: "Strong"}
-level_text = level_map[level]
+# Custom Slider for Password Strength
+level = st.radio("⚡ Select Password Strength:", ["Weak 🟡", "Medium 🟠", "Strong 🔴"])
 
 # Generate Password Button
-if st.button("Generate Password"):
+if st.button("🔑 Generate Password"):
     if not name.strip() or not extra_chars.strip():
         st.warning("⚠️ Please enter both name and extra characters!")
     else:
+        level_text = level.split()[0]  # Extract strength text (Weak, Medium, Strong)
         password = generate_password(name.strip(), extra_chars.strip(), level_text)
         st.success(f"✅ Your Generated Password: `{password}`")
 
