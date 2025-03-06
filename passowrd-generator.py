@@ -35,10 +35,16 @@ st.markdown(
             padding: 20px;
             border-radius: 10px;
         }
-        .stTextInput, .stSlider {
-            background-color: #ffffff;
-            color: #000000;
+        .stTextInput input, .stRadio label {
+            background-color: #ffffff !important;
+            color: #000000 !important;
             border-radius: 5px;
+            padding: 5px;
+        }
+        .stButton button {
+            color: #002d6e !important;
+            background-color: #ffffff !important;
+            font-weight: bold;
         }
     </style>
     """,
@@ -48,7 +54,7 @@ st.markdown(
 # Title with Custom Styling
 st.markdown("""
     <h1 style='text-align: center; color: #ffffff;'>🔐 Secure Password Generator</h1>
-    <h3 style='text-align: center;'>Create a strong, unique password instantly! 🚀</h3>
+    <h3 style='text-align: center; color: #ffffff;'>Create a strong, unique password instantly! 🚀</h3>
 """, unsafe_allow_html=True)
 
 # Input Fields
@@ -70,5 +76,5 @@ if st.button("🔑 Generate Password"):
 # Footer with Custom Styling
 st.markdown("""
     <hr>
-    <p style='text-align: center;'>🔒 Keep your password secure and unique! | <b>Created by Hanishah</b></p>
+    <p style='text-align: center; color: #ffffff;'>🔒 Keep your password secure and unique! | <b>Created by Hanishah</b></p>
 """, unsafe_allow_html=True)
