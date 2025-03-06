@@ -25,11 +25,17 @@ def generate_password(name, extra_chars, level):
 # Page Config
 st.set_page_config(page_title="Password Generator", page_icon="🔑", layout="centered")
 
+# Title
+st.markdown("""
+    # 🔐 Secure Password Generator
+    ### Create a strong, unique password instantly! 🚀
+""")
+
 # Input Fields
 name = st.text_input("✏️ Enter a name or keyword:")
 extra_chars = st.text_input("🔢 Enter numbers or symbols:")
 
-# Custom Slider for Password Strength
+# Password Strength Selection
 level = st.radio("⚡ Select Password Strength:", ["Weak 🟡", "Medium 🟠", "Strong 🔴"])
 
 # Generate Password Button
@@ -41,8 +47,8 @@ if st.button("🔑 Generate Password"):
         password = generate_password(name.strip(), extra_chars.strip(), level_text)
         st.success(f"✅ Your Generated Password: `{password}`")
 
-# Footer with Custom Styling
+# Footer
 st.markdown("""
-    <hr>
-    <p style='text-align: center'>🔒 Keep your password secure and unique! | <b>Created by Hanishah</b></p>
-""", unsafe_allow_html=True)
+    ---
+    🔒 Keep your password secure and unique! | **Created by Hanishah**
+""")
