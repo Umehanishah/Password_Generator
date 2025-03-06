@@ -13,7 +13,11 @@ def generate_password(name, extra_chars, level):
         length = 16
         chars = string.ascii_letters + string.digits + string.punctuation
     
-    random_chars = ''.join(random.choices(chars, k=length - len(name + extra_chars)))
+    total_length = len(name) + len(extra_chars)
+    if total_length >= length:
+        return name + extra_chars  # If input is too long, return as is
+    
+    random_chars = ''.join(random.choices(chars, k=length - total_length))
     password = name + extra_chars + random_chars
     password = ''.join(random.sample(password, len(password)))  # Shuffle password for randomness
     return password
@@ -25,8 +29,11 @@ st.set_page_config(page_title="Password Generator", page_icon="🔑", layout="ce
 st.markdown(
     """
     <style>
-        body { background-color: #FFEBEB; }
-        .stTextInput, .stSlider { text-align: center; }
+        .stApp {
+            background-color: #FFEBEB;
+            padding: 20px;
+            border-radius: 10px;
+        }
     </style>
     """,
     unsafe_allow_html=True
@@ -41,7 +48,7 @@ st.markdown("""
 # Input Fields
 name = st.text_input("Enter a name or keyword:")
 extra_chars = st.text_input("Enter numbers or symbols:")
-level = st.slider("Select password strength:", 1, 3, 2, format={1: "Weak", 2: "Medium", 3: "Strong"})
+level = st.slider("Select password strength:", 1, 3, 2, format=None)
 
 # Convert slider value to text
 level_map = {1: "Weak", 2: "Medium", 3: "Strong"}
@@ -49,10 +56,10 @@ level_text = level_map[level]
 
 # Generate Password Button
 if st.button("Generate Password"):
-    if not name or not extra_chars:
+    if not name.strip() or not extra_chars.strip():
         st.warning("⚠️ Please enter both name and extra characters!")
     else:
-        password = generate_password(name, extra_chars, level_text)
+        password = generate_password(name.strip(), extra_chars.strip(), level_text)
         st.success(f"✅ Your Generated Password: `{password}`")
 
 # Footer with Custom Styling
